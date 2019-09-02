@@ -56,4 +56,14 @@ public class MainActivity extends AppCompatActivity {
         running=false;
         seconds=0;
     }
+
+    public void onClickLap(View view)
+    {
+        TextView curr = findViewById(R.id.textView);
+        StringBuilder current = new StringBuilder();
+        current.append(curr.getText().toString());
+        TextView app = findViewById(R.id.textView2);
+        current.append("\n").append(app.getText().toString());
+        app.setText(current);
+    }
 }
