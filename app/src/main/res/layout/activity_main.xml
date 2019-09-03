@@ -61,5 +61,6 @@
         android:layout_margin="16dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:scrollbars="vertical"/>
 </LinearLayout>

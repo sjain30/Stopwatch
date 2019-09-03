@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -74,5 +75,6 @@ public class MainActivity extends AppCompatActivity {
         TextView app = findViewById(R.id.textView2);
         current.append(app.getText().toString());
         app.setText(current);
+        app.setMovementMethod(new ScrollingMovementMethod());
     }
 }
