@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int seconds;
     private boolean running;
+    private int lapcount=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
         seconds=0;
     }
 
-    public void onClickLap(View view)
+    public void onClickLap(View view)       //Make lap inactive when stopwatch is stopped
     {
+        lapcount++;
         TextView curr = findViewById(R.id.textView);
         StringBuilder current = new StringBuilder();
-        current.append(curr.getText().toString());
+        current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
         TextView app = findViewById(R.id.textView2);
-        current.append("\n").append(app.getText().toString());
+        current.append(app.getText().toString());
         app.setText(current);
     }
 }
