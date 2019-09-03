@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private int seconds;
     private boolean running;
     private int lapcount=0;
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +48,23 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStart(View view)
     {
         running=true;
+        button = findViewById(R.id.button4);
+        button.setEnabled(true);
     }
 
     public void onClickStop(View view)
     {
         running=false;
+        button = findViewById(R.id.button4);
+        button.setEnabled(false);
     }
 
     public void onClickReset(View view)
     {
         running=false;
         seconds=0;
+        button = findViewById(R.id.button4);
+        button.setEnabled(false);
     }
 
     public void onClickLap(View view)       //Make lap inactive when stopwatch is stopped
