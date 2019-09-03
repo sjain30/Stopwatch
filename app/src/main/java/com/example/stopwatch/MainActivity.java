@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button = findViewById(R.id.button4);
         runTimer();
     }
 
@@ -48,14 +49,12 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStart(View view)
     {
         running=true;
-        button = findViewById(R.id.button4);
         button.setEnabled(true);
     }
 
     public void onClickStop(View view)
     {
         running=false;
-        button = findViewById(R.id.button4);
         button.setEnabled(false);
     }
 
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     {
         running=false;
         seconds=0;
-        button = findViewById(R.id.button4);
         button.setEnabled(false);
     }
 
