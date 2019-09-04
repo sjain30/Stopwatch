@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -23,9 +24,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(savedInstanceState!=null)
+        {
+            seconds=savedInstanceState.getInt("seconds");
+            running=savedInstanceState.getBoolean("running");
+            lapcount=savedInstanceState.getInt("lapcount");
+            app.setText(savedInstanceState.getString("laps"));
+        }
         button = findViewById(R.id.button4);
         app = findViewById(R.id.textView2);
         runTimer();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("seconds", seconds);
+        outState.putBoolean("running", running);
+        outState.putInt("lapcount",lapcount);
+        outState.putString("laps",app.getText().toString());
     }
 
     private void runTimer()
