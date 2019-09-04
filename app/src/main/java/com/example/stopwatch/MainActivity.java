@@ -17,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean running;
     private int lapcount=0;
     Button button;
+    TextView app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.button4);
+        app = findViewById(R.id.textView2);
         runTimer();
     }
 
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         running=false;
         seconds=0;
         button.setEnabled(false);
+        app.setText("");
+        lapcount=0;
     }
 
     public void onClickLap(View view)       //Make lap inactive when stopwatch is stopped
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         TextView curr = findViewById(R.id.textView);
         StringBuilder current = new StringBuilder();
         current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
-        TextView app = findViewById(R.id.textView2);
+
         current.append(app.getText().toString());
         app.setText(current);
         app.setMovementMethod(new ScrollingMovementMethod());
