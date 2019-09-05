@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -16,14 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     private int seconds;
     private boolean running;
-    private int lapcount=0;
-    Button button;
-    TextView app;
+    private int lapcount;
+    private Button button;
+    private TextView app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button = findViewById(R.id.button3);
+        app = findViewById(R.id.textView2);
         if(savedInstanceState!=null)
         {
             seconds=savedInstanceState.getInt("seconds");
@@ -31,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
             lapcount=savedInstanceState.getInt("lapcount");
             app.setText(savedInstanceState.getString("laps"));
         }
-        button = findViewById(R.id.button4);
-        app = findViewById(R.id.textView2);
+        else {
+            lapcount = 0;
+        }
         runTimer();
     }
 
@@ -66,36 +68,59 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onClickStart(View view)
+    public void onClickStartStop(View view)
     {
-        running=true;
-        button.setEnabled(true);
+        Button button2 = (Button)view;
+        if (button2.getText().toString().equals("Start")) {
+            running = true;
+            button.setEnabled(true);
+            button.setText(R.string.lap);
+            button2.setText(R.string.stop);
+        }
+        else if (button2.getText().toString().equals("Stop")) {
+            running=false;
+            button.setText(R.string.reset);
+            button2.setText(R.string.start);
+        }
     }
 
-    public void onClickStop(View view)
+//    public void onClickStop(View view)
+//    {
+//        running=false;
+//        button.setEnabled(false);
+//    }
+
+    public void onClickResetLap(View view)
     {
-        running=false;
-        button.setEnabled(false);
+        Button button3 = (Button)view;
+        if (button3.getText().toString().equals("Reset")) {
+            running = false;
+            seconds = 0;
+            button3.setText(R.string.lap);
+            app.setText("");
+            lapcount = 0;
+            button3.setEnabled(false);
+        }
+        else if (button3.getText().toString().equals("Lap"))
+        {
+            lapcount++;
+            TextView curr = findViewById(R.id.textView);
+            StringBuilder current = new StringBuilder();
+            current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
+            current.append(app.getText().toString());
+            app.setText(current);
+            app.setMovementMethod(new ScrollingMovementMethod());
+        }
     }
 
-    public void onClickReset(View view)
-    {
-        running=false;
-        seconds=0;
-        button.setEnabled(false);
-        app.setText("");
-        lapcount=0;
-    }
-
-    public void onClickLap(View view)       //Make lap inactive when stopwatch is stopped
-    {
-        lapcount++;
-        TextView curr = findViewById(R.id.textView);
-        StringBuilder current = new StringBuilder();
-        current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
-
-        current.append(app.getText().toString());
-        app.setText(current);
-        app.setMovementMethod(new ScrollingMovementMethod());
-    }
+//    public void onClickLap(View view)       //Make lap inactive when stopwatch is stopped
+//    {
+//        lapcount++;
+//        TextView curr = findViewById(R.id.textView);
+//        StringBuilder current = new StringBuilder();
+//        current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
+//        current.append(app.getText().toString());
+//        app.setText(current);
+//        app.setMovementMethod(new ScrollingMovementMethod());
+//    }
 }
