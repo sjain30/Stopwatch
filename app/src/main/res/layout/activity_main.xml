@@ -5,6 +5,7 @@
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
@@ -16,7 +17,16 @@
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/textColor"
         android:textSize="56sp" />
+
+    <!--<Button-->
+    <!--android:id="@+id/button4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:onClick="onClickLap"-->
+    <!--android:text="@string/lap" />-->
 
     <LinearLayout
         android:id="@+id/horizontal"
@@ -30,27 +40,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:background="@drawable/roundbutton"
             android:onClick="onClickStartStop"
-            android:text="@string/start" />
+            android:text="@string/start"
+            android:textColor="@color/textColor" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="112dp"
+            android:background="@drawable/roundbutton2"
             android:enabled="false"
             android:onClick="onClickResetLap"
-            android:text="@string/lap" />
+            android:text="@string/lap"
+            android:textColor="@color/textColor" />
     </LinearLayout>
-    <!--<Button-->
-        <!--android:id="@+id/button4"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:onClick="onClickLap"-->
-        <!--android:text="@string/lap" />-->
 
     <TextView
         android:id="@+id/textView2"
@@ -59,8 +65,8 @@
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:gravity="center"
+        android:scrollbars="vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/colorPrimaryDark"
-        android:scrollbars="vertical"/>
+        android:textColor="@color/textColor" />
 
 </LinearLayout>

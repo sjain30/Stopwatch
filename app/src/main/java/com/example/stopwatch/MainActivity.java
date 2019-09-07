@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean running;
     private int lapcount;
     private Button button;
+    private Button b1;
     private TextView app;
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.button3);
+        b1 = findViewById(R.id.button);
         app = findViewById(R.id.textView2);
         if(savedInstanceState!=null)
         {
@@ -31,16 +33,30 @@ public class MainActivity extends AppCompatActivity {
             running=savedInstanceState.getBoolean("running");
             lapcount=savedInstanceState.getInt("lapcount");
             app.setText(savedInstanceState.getString("laps"));
+            button.setText(savedInstanceState.getString("b2text"));
+            b1.setText(savedInstanceState.getString("b1text"));
+            if (savedInstanceState.getString("b1text").equals("Start"))
+                b1.setBackground(getDrawable(R.drawable.roundbutton));
+            else
+                b1.setBackground(getDrawable(R.drawable.roundbutton3));
+            button.setEnabled(savedInstanceState.getBoolean("b2state"));
         }
         else {
             lapcount = 0;
         }
+        app.setMovementMethod(new ScrollingMovementMethod());
         runTimer();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString("b1text",b1.getText().toString());
+        outState.putString("b2text",button.getText().toString());
+        if (seconds!=0)
+            outState.putBoolean("b2state",true);
+//        else if (running==false && seconds!=0)
+//            outState.putBoolean("b2state",true);
         outState.putInt("seconds", seconds);
         outState.putBoolean("running", running);
         outState.putInt("lapcount",lapcount);
@@ -70,17 +86,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickStartStop(View view)
     {
-        Button button2 = (Button)view;
-        if (button2.getText().toString().equals("Start")) {
+        if (b1.getText().toString().equals("Start")) {
             running = true;
             button.setEnabled(true);
             button.setText(R.string.lap);
-            button2.setText(R.string.stop);
+            b1.setText(R.string.stop);
+            b1.setBackground(getDrawable(R.drawable.roundbutton3));
+
         }
-        else if (button2.getText().toString().equals("Stop")) {
+        else if (b1.getText().toString().equals("Stop")) {
+
             running=false;
             button.setText(R.string.reset);
-            button2.setText(R.string.start);
+            b1.setText(R.string.start);
+            b1.setBackground(getDrawable(R.drawable.roundbutton));
         }
     }
 
@@ -109,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
             current.append(app.getText().toString());
             app.setText(current);
-            app.setMovementMethod(new ScrollingMovementMethod());
         }
     }
 
