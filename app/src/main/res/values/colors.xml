@@ -7,4 +7,5 @@
     <color name="buttonColor">#787E86</color>
     <color name="startColor">#3FE21A</color>
     <color name="offColor">#1E2020</color>
+    <color name="stopColor">#D60000</color>
 </resources>

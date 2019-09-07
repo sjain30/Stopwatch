@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             lapcount++;
             TextView curr = findViewById(R.id.textView);
             StringBuilder current = new StringBuilder();
-            current.append("\nLap ").append(lapcount).append(" ").append(curr.getText().toString());
+            current.append("\nLap ").append(lapcount).append("          ").append(curr.getText().toString());
             current.append(app.getText().toString());
             app.setText(current);
         }
